@@ -1,0 +1,12 @@
+{
+  "name": "Brihas.AI",
+  "version": "1.0.0",
+  "description": "Landing page for Echo AI app",
+  "scripts": {
+    "build": "Brihas.AI 'Building static site'",
+    "dev": "Brihas.AI 'Serving static site'"
+  },
+  "keywords": ["ai", "journal", "mental-health"],
+  "author": "Yash",
+  "license": ""
+}

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotional Assessment - Soul</title>
+    <!-- Bootstrap CSS for easy styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .bg-blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(111, 66, 193, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .blob-2 {
+            top: 20%;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            bottom: -200px;
+            left: -100px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 20px) scale(1.05); }
+        }
+
+        .assessment-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .assessment-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+        }
+
+        .form-check-input:checked {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+        }
+
+        /* Question animations */
+        .question {
+            transition: all 0.5s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .question.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
+        /* Option items */
+        .option-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Analysis results */
+        .analysis-results {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .analysis-results h4 {
+            color: #8e6cd9;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            background: linear-gradient(90deg, #6f42c1, #8e6cd9);
+            transition: width 0.5s ease;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #8e6cd9, #6f42c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Emotional visualization */
+        .emotion-visualization {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .visualization-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emotion-image {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .emotion-image:hover {
+            transform: scale(1.02);
+        }
+
+        .visualization-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .visualization-description {
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .download-btn {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background Blobs -->
+    <div class="bg-blob"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <section class="assessment-section py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="text-center mb-5" data-aos="fade-up">
+                        <h1 class="display-4 fw-bold mb-3">Emotional Assessment</h1>
+                        <p class="lead">Answer these questions to gain insights into your current emotional state</p>
+                    </div>
+
+                    <div class="assessment-card p-4 rounded" data-aos="fade-up">
+                        <div id="assessment-progress" class="mb-4">
+                            <div class="progress" style="height: 8px;">
+                                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-2">
+                                <small>Initial Question</small>
+                                <small id="progress-text">0/6</small>
+                                <small>Analysis</small>
+                            </div>
+                        </div>
+
+                        <div id="question-container">
+                            <!-- Initial question -->
+                            <div id="question-0" class="question active">
+                                <p class="fw-bold mb-3 fs-5">What area of your life do you want to analyze about?</p>
+                                <div class="options-container">
+                                    <div class="form-check option-item">
+                                        <input class="form-check-input" type="radio" name="lifeArea" id="career" value="Career/Work">
+                                        <label class="form-check-label" for="career">Career/Work</label>
+                                    </div>
+                                    <div class="form-check option-item">
+                                        <input class="form-check-input" type="radio" name="lifeArea" id="relationships" value="Relationships">
+                                        <label class="form-check-label" for="relationships">Relationships</label>
+                                    </div>
+                                    <div class="form-check option-item">
+                                        <input class="form-check-input" type="radio" name="lifeArea" id="personal" value="Personal Growth">
+                                        <label class="form-check-label" for="personal">Personal Growth</label>
+                                    </div>
+                                    <div class="form-check option-item">
+                                        <input class="form-check-input" type="radio" name="lifeArea" id="health" value="Health/Wellness">
+                                        <label class="form-check-label" for="health">Health/Wellness</label>
+                                    </div>
+                                    <div class="form-check option-item">
+                                        <input class="form-check-input" type="radio" name="lifeArea" id="finance" value="Finances">
+                                        <label class="form-check-label" for="finance">Finances</label>
+                                    </div>
+                                </div>
+                                <button id="start-assessment" class="btn btn-primary mt-4" disabled>Continue</button>
+                            </div>
+
+                            <!-- AI-generated questions will be inserted here -->
+                        </div>
+
+                        <!-- Results section (hidden initially) -->
+                        <div id="results-container" class="d-none">
+                            <div class="row">
+                                <div class="col-lg-7 mb-4 mb-lg-0">
+                                    <div class="text-center mb-4">
+                                        <i class="bi bi-stars display-4 text-gradient"></i>
+                                        <h3 class="fw-bold mt-3">Your Emotional Analysis</h3>
+                                    </div>
+                                    <div id="analysis-results" class="analysis-results">
+                                        <!-- AI-generated analysis will appear here -->
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="emotion-visualization">
+                                        <h4 class="text-center mb-3">Emotional State Visualization</h4>
+                                        <div class="visualization-container">
+                                            <div id="visualization-loading" class="visualization-loading">
+                                                <div class="spinner-border text-primary mb-2" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                                <p>Generating your emotional visualization...</p>
+                                            </div>
+                                            <img id="emotion-image" class="emotion-image d-none" alt="Emotional State Visualization">
+                                        </div>
+                                        <p id="visualization-description" class="visualization-description"></p>
+                                        <div class="text-center download-btn">
+                                            <button id="download-btn" class="btn btn-outline-light btn-sm">
+                                                <i class="bi bi-download me-1"></i> Download Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <a href="/" class="btn btn-outline-primary me-2">Back to Home</a>
+                                <button id="restart-assessment" class="btn btn-primary">Try Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+
+        // Global variables
+        let currentQuestion = 0;
+        let userResponses = {};
+        let aiGeneratedQuestions = [];
+
+        // DOM elements
+        const questionContainer = document.getElementById('question-container');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const startButton = document.getElementById('start-assessment');
+        const resultsContainer = document.getElementById('results-container');
+        const analysisResults = document.getElementById('analysis-results');
+        const restartButton = document.getElementById('restart-assessment');
+        const emotionImage = document.getElementById('emotion-image');
+        const visualizationLoading = document.getElementById('visualization-loading');
+        const visualizationDescription = document.getElementById('visualization-description');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Enable start button when an option is selected
+        document.querySelectorAll('input[name="lifeArea"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                startButton.disabled = false;
+            });
+        });
+
+        // Start assessment when initial question is answered
+        startButton.addEventListener('click', () => {
+            const selectedArea = document.querySelector('input[name="lifeArea"]:checked').value;
+            userResponses.lifeArea = selectedArea;
+
+            // Animate out the initial question
+            document.getElementById('question-0').classList.add('fade-out');
+
+            setTimeout(() => {
+                // Get AI-generated questions
+                getAIQuestions(selectedArea);
+            }, 500);
+        });
+
+        // Restart assessment
+        restartButton.addEventListener('click', () => {
+            window.location.reload();
+        });
+
+        // Download image
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'emotional-state-visualization.png';
+            link.href = emotionImage.src;
+            link.click();
+        });
+
+        // Function to get AI-generated questions
+        function getAIQuestions(lifeArea) {
+            // Show loading state
+            questionContainer.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Generating personalized questions based on your selection...</p>
+                </div>
+            `;
+
+            // Call backend to generate questions
+            fetch('/generate-questions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ lifeArea: lifeArea })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                aiGeneratedQuestions = data.questions;
+                currentQuestion = 0;
+                updateProgress();
+                displayQuestion(currentQuestion);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Fallback questions in case of API failure
+                aiGeneratedQuestions = [
+                    {
+                        "question": `How satisfied are you with your ${lifeArea} currently?`,
+                        "options": ["Very dissatisfied", "Somewhat dissatisfied", "Neutral", "Somewhat satisfied", "Very satisfied"]
+                    },
+                    {
+                        "question": `What emotions arise when you think about your ${lifeArea}?`,
+                        "options": ["Mostly negative", "More negative than positive", "Mixed emotions", "More positive than negative", "Mostly positive"]
+                    },
+                    {
+                        "question": `How supported do you feel in improving your ${lifeArea}?`,
+                        "options": ["Not supported at all", "Minimally supported", "Somewhat supported", "Well supported", "Extremely supported"]
+                    },
+                    {
+                        "question": `What would you like to change about your ${lifeArea}?`,
+                        "options": ["Everything needs change", "Many aspects need change", "Some aspects need change", "A few things need change", "Very little needs change"]
+                    },
+                    {
+                        "question": `How does your ${lifeArea} affect your overall wellbeing?`,
+                        "options": ["Extremely negatively", "Somewhat negatively", "No significant effect", "Somewhat positively", "Extremely positively"]
+                    }
+                ];
+                currentQuestion = 0;
+                updateProgress();
+                displayQuestion(currentQuestion);
+            });
+        }
+
+        // Function to display a question
+        function displayQuestion(index) {
+            if (index >= aiGeneratedQuestions.length) {
+                // All questions answered, get analysis
+                getAIAnalysis();
+                return;
+            }
+
+            const questionData = aiGeneratedQuestions[index];
+            const question = questionData.question;
+            const options = questionData.options;
+
+            let optionsHTML = '';
+            options.forEach((option, i) => {
+                optionsHTML += `
+                    <div class="form-check option-item">
+                        <input class="form-check-input" type="radio" name="question${index}" id="q${index}a${i}" value="${i + 1}">
+                        <label class="form-check-label" for="q${index}a${i}">${option}</label>
+                    </div>
+                `;
+            });
+
+            const questionHTML = `
+                <div id="question-${index+1}" class="question active">
+                    <p class="fw-bold mb-3 fs-5">${question}</p>
+                    <div class="options-container">
+                        ${optionsHTML}
+                    </div>
+                    <button class="btn btn-primary mt-4 next-question" disabled>Next Question</button>
+                </div>
+            `;
+
+            questionContainer.innerHTML = questionHTML;
+
+            // Enable next button when an option is selected
+            document.querySelectorAll(`input[name="question${index}"]`).forEach(radio => {
+                radio.addEventListener('change', () => {
+                    document.querySelector('.next-question').disabled = false;
+                });
+            });
+
+            // Handle next question button
+            document.querySelector('.next-question').addEventListener('click', () => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                const selectedValue = selectedOption.value;
+                const selectedText = selectedOption.nextElementSibling.textContent;
+
+                userResponses[`question${index}`] = {
+                    question: question,
+                    answer: selectedValue,
+                    answerText: selectedText
+                };
+
+                // Animate out current question
+                document.getElementById(`question-${index+1}`).classList.add('fade-out');
+
+                setTimeout(() => {
+                    currentQuestion++;
+                    updateProgress();
+                    displayQuestion(currentQuestion);
+                }, 500);
+            });
+        }
+
+        // Function to get AI analysis
+        function getAIAnalysis() {
+            // Show loading state
+            questionContainer.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Analyzing your responses and generating personalized insights...</p>
+                </div>
+            `;
+
+            // Call backend to generate analysis
+            fetch('/generate-analysis', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    lifeArea: userResponses.lifeArea,
+                    responses: userResponses,
+                    questionsData: aiGeneratedQuestions
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayResults(data.analysis);
+                // Generate visualization based on the analysis
+                generateEmotionImage(data.analysis);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Fallback analysis in case of API failure
+                const fallbackAnalysis = `
+                    <h4 class="fw-bold">Your Emotional State</h4>
+                    <p>Based on your responses about ${userResponses.lifeArea}, you seem to be in a period of reflection and growth. Your answers suggest you're aware of areas that need attention and are motivated to make positive changes.</p>
+
+                    <h4 class="fw-bold mt-4">Potential Blockers</h4>
+                    <ul>
+                        <li>Uncertainty about next steps</li>
+                        <li>Difficulty prioritizing your needs</li>
+                        <li>External pressures influencing your decisions</li>
+                    </ul>
+
+                    <h4 class="fw-bold mt-4">Suggestions for Growth</h4>
+                    <ul>
+                        <li>Set small, achievable goals to build momentum</li>
+                        <li>Practice mindfulness to stay connected with your emotions</li>
+                        <li>Seek support from trusted friends or mentors</li>
+                        <li>Celebrate small victories along your journey</li>
+                    </ul>
+                `;
+                displayResults(fallbackAnalysis);
+                generateEmotionImage(fallbackAnalysis);
+            });
+        }
+
+        // Function to generate emotion image
+        function generateEmotionImage(analysis) {
+            // Call backend to generate emotion image
+            fetch('/generate-emotion-image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    analysis: analysis,
+                    lifeArea: userResponses.lifeArea
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Display the generated image
+                emotionImage.src = data.imageData;
+                emotionImage.classList.remove('d-none');
+                visualizationLoading.classList.add('d-none');
+                visualizationDescription.textContent = data.description;
+            })
+            .catch(error => {
+                console.error('Error generating emotion image:', error);
+                // Show a placeholder image
+                emotionImage.src = 'https://images.unsplash.com/photo-1516549655169-df83a0774514?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+                emotionImage.classList.remove('d-none');
+                visualizationLoading.classList.add('d-none');
+                visualizationDescription.textContent = "Visual representation of your emotional state";
+            });
+        }
+
+        // Function to display results
+        function displayResults(analysisHTML) {
+            questionContainer.classList.add('d-none');
+            resultsContainer.classList.remove('d-none');
+            analysisResults.innerHTML = analysisHTML;
+            progressBar.style.width = '100%';
+            progressText.textContent = '6/6';
+        }
+
+        // Update progress bar and text
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / (aiGeneratedQuestions.length + 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${currentQuestion + 1}/${aiGeneratedQuestions.length + 1}`;
+        }
+    </script>
+</body>
+</html>

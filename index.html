@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul - Your Mind, Souled</title>
+    <!-- Bootstrap CSS for easy styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to our own custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+        <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <!-- Animated Background Blobs -->
+    <div class="bg-blob"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <!-- HERO SECTION -->
+<section class="hero-section d-flex align-items-center" data-aos="fade-up">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <!-- Left column (existing content) -->
+            <div class="col-lg-6 col-md-10">
+                <h1 class="display-2 fw-bold mb-3">Mirror yourself</h1>
+                <p class="lead mb-4">Soul helps you break through mental barriers, gain profound self-awareness, and become the person you're meant to be.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="#waitlist" class="btn btn-primary btn-lg px-4 gap-3">Join the Waitlist</a>
+                    <a href="#how-it-works" class="btn btn-outline-light btn-lg px-4">Discover how</a>
+                </div>
+            </div>
+
+            <!-- Right column (new feature) -->
+            <div class="col-lg-5 col-md-8 mt-5 mt-lg-0">
+                <div class="ai-preview-card p-4 rounded">
+                    <h3 class="fw-bold mb-3">Try our AI and know your emotional state</h3>
+                    <p class="mb-4">Get instant insights about your current wellbeing.</p>
+                    <a href="emotional-assessment.html" class="btn btn-light btn-lg w-100">Try now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- FEATURE SHOWCASE SECTION -->
+    <section id="how-it-works" class="py-5 bg-dark" data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="display-3 fw-bold mb-3">Find clarity in the chaos</h2>
+                    <p class="lead">Soul helps you untangle your thoughts, gain perspective, and move forward with confidence.</p>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <ul class="nav nav-pills justify-content-center mb-4" id="featuresTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active feature-tab" id="journal-tab" data-bs-toggle="pill" data-bs-target="#journal" type="button" role="tab">
+                                <i class="bi bi-journal-text me-2"></i>Gain Clarity
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link feature-tab" id="chat-tab" data-bs-toggle="pill" data-bs-target="#chat" type="button" role="tab">
+                                <i class="bi bi-chat-dots me-2"></i>Find Guidance
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link feature-tab" id="personas-tab" data-bs-toggle="pill" data-bs-target="#personas" type="button" role="tab">
+                                <i class="bi bi-people me-2"></i>Feel Understood
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link feature-tab" id="time-tab" data-bs-toggle="pill" data-bs-target="#time" type="button" role="tab">
+                                <i class="bi bi-hourglass-split me-2"></i>Know Yourself
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="tab-content" id="featuresTabContent">
+                        <!-- Tab 1: Journal -->
+                        <div class="tab-pane fade show active" id="journal" role="tabpanel" tabindex="0">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h3 class="fw-bold">Turn overwhelming thoughts into actionable insights</h3>
+                                    <p class="my-4">When your mind is racing with worries, ideas, and to-dos, it's hard to see what truly matters. Soul helps you identify patterns in your thinking and reveals what's really driving your emotions.</p>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="bi bi-stars text-gradient me-2"></i> <strong>See the patterns you've been missing</strong></li>
+                                        <li class="mb-2"><i class="bi bi-lightbulb text-gradient me-2"></i> <strong>Transform confusion into clear next steps</strong></li>
+                                        <li><i class="bi bi-graph-up text-gradient me-2"></i> <strong>Watch yourself grow more self-aware each week</strong></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <div class="feature-mockup journal-mockup">
+                                        <p class="mockup-text user-text">"Today was overwhelming. Job search is draining, and I feel lost..."</p>
+                                        <div class="ai-response">
+                                            <span class="ai-label">AI Reflection</span>
+                                            <p class="mockup-text ai-text">"I notice you've mentioned feeling 'drained' 3 times this week. This might be a sign to prioritize self-care. Let's break your job search into 3 small steps for tomorrow."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: AI Mentor -->
+                        <div class="tab-pane fade" id="chat" role="tabpanel" tabindex="0">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 order-2 order-md-1">
+                                    <h3 class="fw-bold">Get the exact guidance you need</h3>
+                                    <p class="my-4">Sometimes you need tough love. Other times, gentle support. Soul adapts to give you precisely what you need to hear to move forward.</p>
+                                    <div class="mentor-mode-buttons">
+                                        <button type="button" class="btn mode-btn mode-harsh mb-2">Direct Truth</button>
+                                        <button type="button" class="btn mode-btn mode-moderate mb-2">Balanced Perspective</button>
+                                        <button type="button" class="btn mode-btn mode-smooth">Compassionate Support</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 order-1 order-md-2 text-center">
+                                    <div class="feature-mockup chat-mockup">
+                                        <p class="mockup-text user-text">"I'm thinking of quitting my job."</p>
+                                        <div class="ai-response">
+                                            <span class="ai-label mode-harsh-label">Direct Truth</span>
+                                            <p class="mockup-text ai-text mode-harsh-text">"Let's get real: do you have another offer? If not, you're not quitting—you're surrendering. Let's make a plan to apply to 5 jobs today."</p>
+                                        </div>
+                                        <div class="ai-response mt-3">
+                                            <span class="ai-label mode-moderate-label">Balanced Perspective</span>
+                                            <p class="mockup-text ai-text">"That's a significant decision. Let's weigh the pros and cons together. What's your financial runway? What's your plan B?"</p>
+                                        </div>
+                                        <div class="ai-response mt-3">
+                                            <span class="ai-label mode-smooth-label">Compassionate Support</span>
+                                            <p class="mockup-text ai-text">"Your well-being comes first. I'm proud of you for recognizing your limits. Let's create a thoughtful transition plan that honors your needs."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Personas -->
+                        <div class="tab-pane fade" id="personas" role="tabpanel" tabindex="0">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h3 class="fw-bold">Feel truly heard and understood</h3>
+                                    <p class="my-4">Different situations call for different perspectives. Soul lets you choose the voice that will help you most right now—whether you need encouragement, honesty, or comfort.</p>
+                                    <div class="persona-scroll-container">
+                                        <div class="persona-tag">Supportive Parent</div>
+                                        <div class="persona-tag">Honest Best Friend</div>
+                                        <div class="persona-tag">Professional Therapist</div>
+                                        <div class="persona-tag">Motivational Coach</div>
+                                        <div class="persona-tag">Wisdom Figure</div>
+                                        <div class="persona-tag">Stoic Philosopher</div>
+                                        <div class="persona-tag">Strategic Planner</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-center">
+                                    <div class="feature-mockup personas-mockup">
+                                        <div class="persona-chat-container">
+                                            <div class="persona-chat mt-3" data-persona="mom">
+                                                <span class="persona-name mom-text">Supportive Parent</span>
+                                                <p class="mockup-text">"I'm so proud of you for facing this challenge. Remember to be kind to yourself—you're doing better than you think."</p>
+                                            </div>
+                                            <div class="persona-chat mt-3" data-persona="friend">
+                                                <span class="persona-name friend-text">Honest Best Friend</span>
+                                                <p class="mockup-text">"Okay, let's be real about what's happening here. You're stronger than this situation—let's make a plan to tackle it."</p>
+                                            </div>
+                                            <div class="persona-chat mt-3" data-persona="therapist">
+                                                <span class="persona-name therapist-text">Professional Therapist</span>
+                                                <p class="mockup-text">"I notice you're being very hard on yourself. Let's explore where that inner critic comes from and how to quiet it."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 4: Time Travel -->
+                        <div class="tab-pane fade" id="time" role="tabpanel" tabindex="0">
+                            <div class="row align-items-center">
+                                <div class="col-md-6 order-2 order-md-1">
+                                    <h3 class="fw-bold">See how far you've come</h3>
+                                    <p class="my-4">It's easy to forget how much you've grown. Soul helps you revisit past challenges with new perspective and connect with the wisdom you've gained along the way.</p>
+                                    <p class="my-4">This is more than reflection—it's evidence of your resilience and capacity for growth.</p>
+                                    <div class="time-toggle">
+                                        <span class="time-label past-label">Past Reflections</span>
+                                        <div class="form-check form-switch d-inline-block mx-3">
+                                            <input class="form-check-input" type="checkbox" id="timeSwitch">
+                                        </div>
+                                        <span class="time-label future-label">Future Wisdom</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 order-1 order-md-2 text-center">
+                                    <div class="feature-mockup time-mockup">
+                                        <div class="time-chat-container">
+                                            <div class="time-chat past-chat">
+                                                <span class="time-tag past-tag">You (2 weeks ago)</span>
+                                                <p class="mockup-text">"I can't believe they left. I'll never be happy again. This pain is endless. What's the point of even trying?"</p>
+                                            </div>
+                                            <div class="time-chat future-chat">
+                                                <span class="time-tag future-tag">Your Growth (today)</span>
+                                                <p class="mockup-text">"Look how far you've come. The pain wasn't permanent. You found strength you never knew you had. You're going to be okay—more than okay."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE PROBLEM SECTION -->
+    <section id="the-problem" class="py-5" data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 text-center">
+                    <h2 class="display-5 fw-bold mb-4">Your thoughts don't have to stay trapped inside</h2>
+                    <p class="lead mb-4">We all have inner dialogues, fears, and dreams that never see the light of day. Traditional journaling helps, but it's still a monologue—you're talking to yourself without getting the perspective you need to grow.</p>
+                    <p class="display-6 fw-light">What if you could finally understand why you think and feel the way you do?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section id="benefits" class="py-5" data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-3">Why thousands are finding clarity with Soul</h2>
+                    <p class="lead">This isn't just another journaling app. It's a breakthrough in understanding yourself.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h4 class="fw-bold">Breakthrough self-awareness</h4>
+                        <p>Discover patterns in your thinking that have been holding you back without you even realizing it.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h4 class="fw-bold">Emotional clarity</h4>
+                        <p>Finally understand why you feel what you feel and how to work with your emotions instead of against them.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h4 class="fw-bold">Measurable growth</h4>
+                        <p>Track your progress and see tangible evidence of how you're becoming more resilient and self-aware.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4 class="fw-bold">A safe space to be real</h4>
+                        <p>Express thoughts you'd never share elsewhere without fear of judgment or misunderstanding.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h4 class="fw-bold">Always available support</h4>
+                        <p>Get the perspective you need anytime, anywhere—no appointments, no waiting, no barriers.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="benefit-card text-center p-4">
+                        <div class="benefit-icon mb-3">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h4 class="fw-bold">Your personal growth journey</h4>
+                        <p>Watch your evolution unfold as you build a lasting record of your insights and breakthroughs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF SECTION -->
+    <section id="social-proof" class="py-5" data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="display-4 fw-bold mb-3">Real breakthroughs, real people</h2>
+                    <p class="lead">See what happens when people finally understand themselves.</p>
+                </div>
+            </div>
+
+            <!-- Social Media Feed -->
+            <div class="row justify-content-center">
+                <div class="col-lg-11">
+                    <div class="social-feed">
+                        <!-- Tweet 1 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">Alex Chen</span>
+                                    <span class="social-handle">@alexchen</span>
+                                </div>
+                                <i class="bi bi-twitter social-icon"></i>
+                            </div>
+                            <p class="social-text">Soul showed me a pattern in my thinking I'd been blind to for years. Finally understanding why I self-sabotage has been life-changing. <span class="hashtag">#SoulAI</span> <span class="hashtag">#Breakthrough</span></p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 247</span>
+                                <span><i class="bi bi-arrow-repeat"></i> 89</span>
+                            </div>
+                        </div>
+
+                        <!-- Tweet 2 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=2" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">Maya Rodriguez</span>
+                                    <span class="social-handle">@mayarod</span>
+                                </div>
+                                <i class="bi bi-twitter social-icon"></i>
+                            </div>
+                            <p class="social-text">I've struggled with anxiety for years. Soul helped me understand the triggers I never noticed and gave me practical ways to work with my anxiety instead of fighting it. <span class="hashtag">#MentalHealth</span> <span class="hashtag">#SelfAwareness</span></p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 512</span>
+                                <span><i class="bi bi-arrow-repeat"></i> 134</span>
+                            </div>
+                        </div>
+
+                        <!-- Tweet 3 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=3" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">James Wilson</span>
+                                    <span class="social-handle">@jwilson</span>
+                                </div>
+                                <i class="bi bi-twitter social-icon"></i>
+                            </div>
+                            <p class="social-text">The 'Past Self' feature let me see how much I've grown in just 3 months. I was feeling stuck, but seeing my progress in black and white gave me hope. <span class="hashtag">#Growth</span> <span class="hashtag">#Progress</span></p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 389</span>
+                                <span><i class="bi bi-arrow-repeat"></i> 67</span>
+                            </div>
+                        </div>
+
+                        <!-- Tweet 4 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=4" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">Sarah Kim</span>
+                                    <span class="social-handle">@sarahk</span>
+                                </div>
+                                <i class="bi bi-instagram social-icon"></i>
+                            </div>
+                            <div class="social-image">
+                                <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.1&auto=format&fit=crop&w=500&q=80" alt="App screenshot">
+                            </div>
+                            <p class="social-text">This isn't an app—it's the compassionate, always-available support system I wish I'd had years ago. Finally feeling understood. 😌 #MentalHealth #SoulAI #SelfDiscovery</p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 2.1K</span>
+                                <span><i class="bi bi-chat"></i> 147</span>
+                            </div>
+                        </div>
+
+                        <!-- Tweet 5 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=5" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">Tech Insights</span>
+                                    <span class="social-handle">@techinsights</span>
+                                </div>
+                                <i class="bi bi-twitter social-icon"></i>
+                            </div>
+                            <p class="social-text">Soul might be the first AI tool that actually helps people develop emotional intelligence rather than just simulating conversation. The therapeutic potential is extraordinary. <span class="hashtag">#Innovation</span> <span class="hashtag">#MentalHealthTech</span></p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 894</span>
+                                <span><i class="bi bi-arrow-repeat"></i> 302</span>
+                            </div>
+                        </div>
+
+                        <!-- Tweet 6 -->
+                        <div class="social-card">
+                            <div class="social-header">
+                                <img src="https://i.pravatar.cc/40?img=6" alt="User" class="social-avatar">
+                                <div class="social-user">
+                                    <span class="social-name">DJ</span>
+                                    <span class="social-handle">@deepthoughts</span>
+                                </div>
+                                <i class="bi bi-twitter social-icon"></i>
+                            </div>
+                            <p class="social-text">I've tried therapy, journaling, meditation. Soul is the first thing that's helped me actually understand MY specific patterns instead of generic advice. <span class="hashtag">#SelfAwareness</span> <span class="hashtag">#PersonalGrowth</span></p>
+                            <div class="social-stats">
+                                <span><i class="bi bi-heart-fill"></i> 723</span>
+                                <span><i class="bi bi-arrow-repeat"></i> 198</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center text-center mt-5">
+                <div class="col-lg-6">
+                    <p class="text-muted" style="color: white !important;">Join thousands discovering themselves. Share your experience with <span class="hashtag">#SoulAI</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA SECTION -->
+    <section id="waitlist" class="py-5 cta-section" data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="display-3 fw-bold mb-4">Ready to understand yourself?</h2>
+                    <p class="lead mb-5">Join the waitlist to be among the first to experience Soul and start your journey to self-awareness.</p>
+
+                    <!-- Waitlist Form -->
+                    <form class="waitlist-form">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 col-lg-6">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Enter your email to begin your journey" aria-label="Your email">
+                                    <button class="btn btn-primary" type="submit">Join Waitlist</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Trust Elements -->
+                    <div class="trust-elements mt-5">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <div class="trust-item">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>Private & Secure</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="trust-item">
+                                    <i class="bi bi-people"></i>
+                                    <span>20,000+ already waiting</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="trust-item">
+                                    <i class="bi bi-clock"></i>
+                                    <span>Early access coming soon</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3 class="fw-bold">Soul</h3>
+                    <p class="text-muted mb-0" style="color: white !important;">Understand yourself, finally.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                    <div class="footer-links">
+                        <a href="#" class="text-muted me-3">Privacy Policy</a>
+                        <a href="#" class="text-muted me-3">Terms of Service</a>
+                        <a href="#" class="text-muted me-3">Contact</a>
+                        <a href="mailto:hello@soulapp.com" class="text-muted">hello@soulapp.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <p class="text-muted mb-0" style="color: blue !important;"><small>The most important relationship you'll ever have is with yourself. </small></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-quad'
+        });
+    </script>
+
+    <!-- Bootstrap JS with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Our Museum of You functionality -->
+    <script src="museum.js"></script>
+</body>
+</html>
