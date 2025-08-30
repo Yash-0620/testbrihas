@@ -178,11 +178,33 @@
             margin-top: 4px;
             text-align: right;
         }
+
+        .suggestion-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .suggestion-chip {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-chip:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
     <!-- Name Entry Modal -->
-    <div class="modal fade name-modal" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="false" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal fade name-modal show" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="false" data-bs-backdrop="static" data-bs-keyboard="false" style="display: block; padding-right: 15px;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -202,6 +224,7 @@
             </div>
         </div>
     </div>
+    <div class="modal-backdrop fade show" id="backdrop" style="display: block;"></div>
 
     <!-- Chat Interface (initially hidden) -->
     <div class="chat-container" id="chatInterface" style="display: none;">
@@ -218,6 +241,11 @@
                 <button class="btn btn-primary" type="button" id="sendButton">
                     <i class="bi bi-send-fill"></i>
                 </button>
+            </div>
+            <div class="suggestion-chips mt-2" id="suggestionChips">
+                <div class="suggestion-chip" data-message="I'm feeling anxious today">I'm feeling anxious today</div>
+                <div class="suggestion-chip" data-message="How can I improve my mood?">How can I improve my mood?</div>
+                <div class="suggestion-chip" data-message="I need help with stress">I need help with stress</div>
             </div>
         </div>
     </div>
@@ -243,6 +271,7 @@
 
                 // Hide the modal and show the chat interface
                 nameModal.hide();
+                document.getElementById('backdrop').style.display = 'none';
                 document.getElementById('chatInterface').style.display = 'flex';
 
                 // Show welcome message
@@ -256,6 +285,14 @@
             if (e.key === 'Enter') {
                 sendMessage();
             }
+        });
+
+        // Handle suggestion chips
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.getElementById('messageInput').value = this.getAttribute('data-message');
+                sendMessage();
+            });
         });
 
         function sendMessage() {
@@ -312,22 +349,53 @@
         }
 
         function generateAIResponse(userMessage) {
-            const responses = [
-                "I understand how you're feeling. Can you tell me more about what's been on your mind lately?",
-                "That's interesting. How has that been affecting your daily life?",
-                "I appreciate you sharing that with me. What do you think is the root cause of these feelings?",
-                "Many people experience similar emotions. What strategies have you tried to cope with this?",
-                "Thank you for being open. How would you like to feel instead?",
-                "I hear you. What's one small step you could take today to address this?",
-                "Your self-awareness is commendable. What support do you need right now?",
-                "I'm here to listen without judgment. What else would you like to share?",
-                "It takes courage to explore these feelings. What insights have you gained so far?",
-                "I'm curious to know more about your perspective. How long have you been feeling this way?"
-            ];
+            // Convert to lowercase for easier matching
+            const message = userMessage.toLowerCase();
 
-            // Simple response based on message length and a random selection
-            const randomIndex = Math.floor(Math.random() * responses.length);
-            return responses[randomIndex];
+            // Response patterns based on message content
+            if (message.includes('anxious') || message.includes('anxiety') || message.includes('nervous')) {
+                return "I understand anxiety can be challenging. Try taking a few deep breaths - inhale for 4 seconds, hold for 4, exhale for 6. What specifically is making you feel anxious right now?";
+            }
+            else if (message.includes('stress') || message.includes('stressed') || message.includes('overwhelm')) {
+                return "Stress is your body's response to challenges. Breaking tasks into smaller steps can help. Would you like to try a quick grounding exercise?";
+            }
+            else if (message.includes('sad') || message.includes('depress') || message.includes('unhappy')) {
+                return "I'm sorry you're feeling this way. It's okay to not be okay sometimes. Would talking about what's bothering you help?";
+            }
+            else if (message.includes('happy') || message.includes('good') || message.includes('great')) {
+                return "That's wonderful to hear! Celebrating positive moments is important. What's contributing to these good feelings?";
+            }
+            else if (message.includes('angry') || message.includes('mad') || message.includes('frustrat')) {
+                return "Anger is a natural emotion that often signals a boundary has been crossed. What triggered this response for you?";
+            }
+            else if (message.includes('tired') || message.includes('exhaust') || message.includes('fatigue')) {
+                return "Rest is essential for wellbeing. Are you getting enough sleep? Sometimes fatigue can be emotional as well as physical.";
+            }
+            else if (message.includes('help') || message.includes('support')) {
+                return "I'm here to listen and help you explore your thoughts. What would be most helpful for you right now - practical suggestions or just a space to talk?";
+            }
+            else if (message.includes('hello') || message.includes('hi ') || message.includes('hey')) {
+                return "Hello there! How are you feeling today?";
+            }
+            else {
+                // Default responses for other messages
+                const responses = [
+                    "I understand how you're feeling. Can you tell me more about what's been on your mind lately?",
+                    "That's interesting. How has that been affecting your daily life?",
+                    "I appreciate you sharing that with me. What do you think is the root cause of these feelings?",
+                    "Many people experience similar emotions. What strategies have you tried to cope with this?",
+                    "Thank you for being open. How would you like to feel instead?",
+                    "I hear you. What's one small step you could take today to address this?",
+                    "Your self-awareness is commendable. What support do you need right now?",
+                    "I'm here to listen without judgment. What else would you like to share?",
+                    "It takes courage to explore these feelings. What insights have you gained so far?",
+                    "I'm curious to know more about your perspective. How long have you been feeling this way?"
+                ];
+
+                // Simple response based on message length and a random selection
+                const randomIndex = Math.floor(Math.random() * responses.length);
+                return responses[randomIndex];
+            }
         }
 
         // Check if user already has a name stored
@@ -335,6 +403,7 @@
             const storedName = localStorage.getItem('brihasUserName');
             if (storedName) {
                 nameModal.hide();
+                document.getElementById('backdrop').style.display = 'none';
                 document.getElementById('chatInterface').style.display = 'flex';
                 addMessage('bot', `Welcome back ${storedName}! How have you been since we last spoke?`);
             }
