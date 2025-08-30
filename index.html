@@ -15,6 +15,55 @@
         <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        /* Custom styles for the modal */
+        .waitlist-modal .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .waitlist-modal .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .waitlist-modal .btn-close {
+            filter: invert(1);
+        }
+
+        .waitlist-modal .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 16px;
+        }
+
+        .waitlist-modal .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .waitlist-modal .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        .waitlist-modal .btn-brihas {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border: none;
+            color: white;
+        }
+
+        .waitlist-modal .btn-brihas:hover {
+            background: linear-gradient(135deg, #5a0db9 0%, #1c67e8 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
 </head>
 
 <body>
@@ -23,31 +72,54 @@
     <div class="bg-blob blob-2"></div>
     <div class="bg-blob blob-3"></div>
 
-    <!-- HERO SECTION -->
-<section class="hero-section d-flex align-items-center" data-aos="fade-up">
-    <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <!-- Left column (existing content) -->
-            <div class="col-lg-6 col-md-10">
-                <h1 class="display-2 fw-bold mb-3">Mirror yourself</h1>
-                <p class="lead mb-4">Soul helps you break through mental barriers, gain profound self-awareness, and become the person you're meant to be.</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="#waitlist" class="btn btn-primary btn-lg px-4 gap-3">Join the Waitlist</a>
-                    <a href="#how-it-works" class="btn btn-outline-light btn-lg px-4">Discover how</a>
+    <!-- Waitlist Modal -->
+    <div class="modal fade waitlist-modal" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="waitlistModalLabel">Enter your email and get your pass to experience yourself</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            </div>
-
-            <!-- Right column (new feature) -->
-            <div class="col-lg-5 col-md-8 mt-5 mt-lg-0">
-                <div class="ai-preview-card p-4 rounded">
-                    <h3 class="fw-bold mb-3">Try our AI and know your emotional state</h3>
-                    <p class="mb-4">Get instant insights about your current wellbeing.</p>
-                    <a href="emotional-assessment.html" class="btn btn-light btn-lg w-100">Try now</a>
+                <div class="modal-body">
+                    <form id="waitlistForm">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="waitlistEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <a href="brihas_chat.html" class="btn btn-brihas">Try Brihas.IA</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section d-flex align-items-center" data-aos="fade-up">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <!-- Left column (existing content) -->
+                <div class="col-lg-6 col-md-10">
+                    <h1 class="display-2 fw-bold mb-3">Mirror yourself</h1>
+                    <p class="lead mb-4">Soul helps you break through mental barriers, gain profound self-awareness, and become the person you're meant to be.</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a href="#" class="btn btn-primary btn-lg px-4 gap-3" data-bs-toggle="modal" data-bs-target="#waitlistModal">Join the Waitlist</a>
+                        <a href="#how-it-works" class="btn btn-outline-light btn-lg px-4">Discover how</a>
+                    </div>
+                </div>
+
+                <!-- Right column (new feature) -->
+                <div class="col-lg-5 col-md-8 mt-5 mt-lg-0">
+                    <div class="ai-preview-card p-4 rounded">
+                        <h3 class="fw-bold mb-3">Try our AI and know your emotional state</h3>
+                        <p class="mb-4">Get instant insights about your current wellbeing.</p>
+                        <a href="emotional-assessment.html" class="btn btn-light btn-lg w-100">Try now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- FEATURE SHOWCASE SECTION -->
     <section id="how-it-works" class="py-5 bg-dark" data-aos="fade-up">
@@ -524,6 +596,19 @@
             once: true,
             easing: 'ease-out-quad'
         });
+
+        // Handle form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('waitlistEmail').value;
+            // Here you would typically send this to your backend
+            console.log('Email submitted:', email);
+            alert('Thank you for joining the waitlist! We\'ll be in touch soon.');
+            // Close the modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById('waitlistModal'));
+            modal.hide();
+        });
+
     </script>
 
     <!-- Bootstrap JS with Popper -->
@@ -532,4 +617,5 @@
     <!-- Our Museum of You functionality -->
     <script src="museum.js"></script>
 </body>
+
 </html>
